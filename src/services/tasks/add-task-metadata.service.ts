@@ -12,6 +12,8 @@ export const addTaskMetadata = async (taskId: string, metadata: File) => {
       `/api/importer-tasks/${taskId}/metadata`,
       metadata,
       {
+        // File bodies can take longer than the client's default timeout.
+        timeout: 0,
         headers: {
           'content-type': 'application/octet-stream',
           'X-Filename': `${metadata.name}`

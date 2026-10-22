@@ -17,6 +17,8 @@ export const uploadTaskFile = async (
       `/api/importer-tasks/${taskId}/files/${fileName}/content`,
       fileContent,
       {
+        // File bodies can take longer than the client's default timeout.
+        timeout: 0,
         headers: {
           'Content-Type': 'application/octet-stream'
         }
